@@ -11,13 +11,13 @@ function ItemList() {
     }, []);
 
     const fetchItems = async () => {
-        const response = await axios.get('http://localhost:8080/items');
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/items`);
         setItems(response.data);
     };
 
     const addItem = async () => {
         if (itemName.trim() !== '') {
-            await axios.post('http://localhost:8080/items', { name: itemName });
+            await axios.post(`${import.meta.env.VITE_API_URL}/items`, { name: itemName });
             setSuccessMessage('Item added successfully!');
             setItemName('');
             fetchItems();
